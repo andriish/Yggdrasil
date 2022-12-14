@@ -70,7 +70,7 @@ ${FC_H_CONTENT}\n\
 #define PACKAGE_VERSION \"${QCDNUM_VERSION}\"\n\n\
 /* Version number of package */\n\
 #define VERSION \"${QCDNUM_VERSION}\"\n\
-$<IF:$<BOOL:${QCDNUM_ENABLE_OPENMP}>,#define QCDNUM_MPI 1,/* #undef QCDNUM_MPI */>\n\n\
+$<IF:$<BOOL:${QCDNUM_ENABLE_OPENMP}>,#define QCDNUM_OPENMP 1,/* #undef QCDNUM_OPENMP */>\n\n\
 ")
 file(GENERATE OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/CxxHead/QCDNUM/FortranWrappers.h CONTENT "${FortranWrappers_h_CONTENT}")
 ########################################################################
