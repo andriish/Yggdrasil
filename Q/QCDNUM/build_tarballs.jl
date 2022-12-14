@@ -15,12 +15,10 @@ sources = [
 # Bash recipe for building across all platforms
 script = raw"""
 cd $WORKSPACE/srcdir/qcdnum*/
-if [[ "${target}" == *-mingw* ]]; then
-    atomic_patch -p1 ../patches/link-no-undefined-windows.patch
-fi
-./configure --prefix=${prefix} --build=${MACHTYPE} --host=${target} --disable-static
-make -j${nproc}
-make install
+cp ../patches/CMakeLists.txt ./
+cmake -S . -B BUILD  -DCMAKE_INSTALL_PREFIX=${prefix} -DQCDNUM_ENABLE_OPENMP:BOOL=ON
+cmake --build BUILD -j ${nproc}
+cmake --install BUILD
 """
 
 # These are the platforms we will build for by default, unless further
